@@ -1,0 +1,62 @@
+{
+   "abstract" : "makes something",
+   "author" : [
+      "Wouter Willaert <wouterw@inuits.eu>",
+      "Vitali Peil <vitali.peil at uni-bielefeld.de>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Catmandu-CrossRef",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::Pod" : "1.41"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Catmandu" : "0.9204",
+            "Furl" : "3.02",
+            "Moo" : "1.005000",
+            "XML::LibXML::Simple" : "0.94",
+            "perl" : "v5.10.1"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "1.001003"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=Catmandu-CrossRef"
+      },
+      "homepage" : "https://github.com/vpeil/Catmandu-CrossRef/wiki",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/vpeil/Catmandu-CrossRef.git",
+         "web" : "https://github.com/vpeil/Catmandu-CrossRef"
+      }
+   },
+   "version" : "0.001"
+}
+

@@ -1,0 +1,28 @@
+---
+abstract: 'makes something'
+author:
+  - 'Wouter Willaert <wouterw@inuits.eu>'
+  - 'Vitali Peil <vitali.peil at uni-bielefeld.de>'
+build_requires:
+  Module::Build: 0.3601
+  Test::More: 1.001003
+configure_requires:
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Catmandu-CrossRef
+requires:
+  Catmandu: 0.9204
+  Furl: 3.02
+  Moo: 1.005000
+  XML::LibXML::Simple: 0.94
+  perl: v5.10.1
+resources:
+  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Catmandu-CrossRef
+  homepage: https://github.com/vpeil/Catmandu-CrossRef/wiki
+  repository: git://github.com/vpeil/Catmandu-CrossRef.git
+version: 0.001

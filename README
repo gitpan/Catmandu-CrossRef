@@ -1,0 +1,24 @@
+NAME
+      Catmandu::Importer::CrossRef - Package that imports data form CrossRef.
+      Take an existing DOI and lookup the metadata for it.
+
+SYNOPSIS
+      use Catmandu::Importer::DOI;
+
+      my %attrs = (
+        doi => '<doi>',
+        usr => '<your-crossref-username>',
+            pwd => '<your-crossref-password>',
+            format => '<xsd_xml | unixref | unixsd | info>'
+      );
+
+      my $importer = Catmandu::Importer::DOI->new(%attrs);
+
+      my $n = $importer->each(sub {
+        my $hashref = $_[0];
+        # ...
+      });
+
+SEE ALSO
+    Catmandu::Iterable, Catmandu::Importer
+
