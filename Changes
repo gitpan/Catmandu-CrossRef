@@ -1,4 +1,9 @@
+Revision history for Catmandu-CrossRef
 
-{{NEXT}}
-	- successor of Catmandu::Importer::DOI, development will be here
+0.002  2014-06-27 07:46:24 CEST
+	- pod
+	- bug fix
+
+0.001 2014-06-18 09:03:25 CEST
+	- successor of Catmandu::Importer::DOI, development will be continued here
 	- initial commit

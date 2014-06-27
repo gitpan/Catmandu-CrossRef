@@ -1,11 +1,10 @@
 {
-   "abstract" : "makes something",
+   "abstract" : "our $VERSION = '0.002';",
    "author" : [
-      "Wouter Willaert <wouterw@inuits.eu>",
-      "Vitali Peil <vitali.peil at uni-bielefeld.de>"
+      "Wouter Willaert <wouterw at inuits.eu>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Dist::Milla version v1.0.5, Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -14,6 +13,16 @@
       "version" : "2"
    },
    "name" : "Catmandu-CrossRef",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples"
+      ]
+   },
    "prereqs" : {
       "build" : {
          "requires" : {
@@ -48,15 +57,18 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=Catmandu-CrossRef"
+         "web" : "https://github.com/vpeil/Catmandu-CrossRef/issues"
       },
-      "homepage" : "https://github.com/vpeil/Catmandu-CrossRef/wiki",
+      "homepage" : "https://github.com/vpeil/Catmandu-CrossRef",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/vpeil/Catmandu-CrossRef.git",
+         "url" : "https://github.com/vpeil/Catmandu-CrossRef.git",
          "web" : "https://github.com/vpeil/Catmandu-CrossRef"
       }
    },
-   "version" : "0.001"
+   "version" : "0.002",
+   "x_contributors" : [
+      "vpeil <vitali.peil@uni-bielefeld.de>"
+   ]
 }
 

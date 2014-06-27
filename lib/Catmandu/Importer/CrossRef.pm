@@ -1,5 +1,11 @@
 package Catmandu::Importer::CrossRef;
 
+=head1 NAME
+
+  Catmandu::Importer::CrossRef - Package that imports data form CrossRef
+
+=cut
+
 use Catmandu::Sane;
 use Furl;
 use XML::LibXML::Simple qw(XMLin);
@@ -7,47 +13,17 @@ use Moo;
 
 with 'Catmandu::Importer';
 
-# INFO:
-# http://help.crossref.org/#retrieving_doi_information
-
-
-# Constants. -------------------------------------------------------------------
-
 use constant BASE_URL => 'http://doi.crossref.org/search/doi';
 
-
-# Properties. ------------------------------------------------------------------
-
 has base => (is => 'ro', default => sub { return BASE_URL; });
-
-# required.
-
-## doi to get the metadata for.
 has doi => (is => 'ro', required => 1);
-
-## usr is your CrossRef-supplied login name.
 has usr => (is => 'ro', required => 1); 
-
-## pwd is your CrossRef password.
 has pwd => (is => 'ro', required => 0);
-
-# optional.
-
-## format is the desired results format ( xsd_xml | unixref | unixsd | info).
 has fmt => (is => 'ro', default => sub { 'unixref' }); 
 
-# internal.
 has _api_key => (is => 'lazy', builder => '_get_api_key');
 has _current_result => (is => 'ro');
 
-
-# Internal Methods. ------------------------------------------------------------
-
-# Internal: HTTP GET something.
-#
-# $url - the url.
-#
-# Returns the raw response object.
 sub _request {
   my ($self, $url) = @_;
 
@@ -58,14 +34,9 @@ sub _request {
   my $res = $furl->get($url);
   die $res->status_line unless $res->is_success;
 
-  return $res->decoded_content;
+  return $res->content;
 }
 
-# Internal: Converts XML to a perl hash.
-#
-# $in - the raw XML input.
-#
-# Returns a hash representation of the given XML.
 sub _hashify {
   my ($self, $in) = @_;
 
@@ -75,65 +46,49 @@ sub _hashify {
   return $out;
 }
 
-# Internal: Constructs api key.
-#
-# Returns a string representing our api key.
 sub _get_api_key {
 	my ($self) = @_;
 	
-	return $self->usr.':'.$self->pwd;
+	my $key = $self->usr;
+  $key .= ':'.$self->pwd if $self->pwd;
+  return $key;
 }
 
-# Internal: Makes a call to the PLoS API.
-#
-# Returns the XML response body.
 sub _api_call {
   my ($self) = @_;
 
-  # construct the url
   my $url = $self->base;
   $url .= '?pid='.$self->_api_key;
   $url .= '&doi='.$self->doi;
   $url .= '&format='.$self->fmt;
 
-  # http get the url.
   my $res = $self->_request($url);
 
-  # return the response body.
-  return $res->{content};
+  return $res;
 }
 
-# Internal: gets the result.
-#
-# Returns a hash representation of the result.
 sub _get_record {
   my ($self) = @_;
 
   unless ($self->_current_result) {
-	  # fetch the xml response and hashify it.
 	  my $xml = $self->_api_call;
 	  my $hash = $self->_hashify($xml);
 
-	  # get to the point.
 	  $self->{_current_result} = $hash->{doi_record}->{crossref};
   };
 
   return $self->_current_result;
 }
 
+sub to_array {
+  return [ $_[0]->_get_record ];
+}
 
-# Public Methods. --------------------------------------------------------------
+sub first {
+  return [ $_[0]->_get_record ];
+}
 
-# sub to_array {
-#     return [ $_[0]->_get_record ];
-# }
-
-# sub first {
-#     return [ $_[0]->_get_record ];
-# }
-
-# *last = \&first;
-
+*last = \&first;
 
 sub generator {
   my ($self) = @_;
@@ -149,10 +104,7 @@ sub generator {
   };
 }
 
-=head1 NAME
-
-  Catmandu::Importer::CrossRef - Package that imports data form CrossRef.
-  Take an existing DOI and lookup the metadata for it.
+1;
 
 =head1 SYNOPSIS
 
@@ -161,21 +113,56 @@ sub generator {
   my %attrs = (
     doi => '<doi>',
     usr => '<your-crossref-username>',
-	pwd => '<your-crossref-password>',
-	format => '<xsd_xml | unixref | unixsd | info>'
+	  pwd => '<your-crossref-password>',
+	  fmt => '<xsd_xml | unixref | unixsd | info>'
   );
 
   my $importer = Catmandu::Importer::DOI->new(%attrs);
 
   my $n = $importer->each(sub {
     my $hashref = $_[0];
-    # ...
+    # do something here
   });
+
+=head1 DESCRIPTION
+
+  This L<Catmandu::Importer::CrossRef> imports data from the CrossRef API given a DOI.
+
+=head1 CONFIGURATION
+
+=over
+
+=item base
+
+Base url of the API. Default is to http://doi.crossref.org/search/doi.
+
+=item doi
+
+Required. The DOI you want data about.
+
+=item usr
+
+Required. Your CrossRef username. Register first!
+
+=item fmt
+
+Optional. The output format. Default is to unixref.
+Other possible values are xsd_xml, unixsd, info
+
+=back
+
+=begin HTML
+
+<p>
+<img src="https://travis-ci.org/vpeil/Catmandu-CrossRef.svg?branch=master" alt="build status" />
+<img src="https://coveralls.io/repos/vpeil/Catmandu-CrossRef/badge.png?branch=master" alt="coverage status" />
+</p>
+
+=end HTML
 
 =head1 SEE ALSO
 
-L<Catmandu::Iterable>, L<Catmandu::Importer>
+  L<Catmandu::Importer::DOI> is an older version of this module.
+  L<Catmandu::Iterable>, L<Catmandu::Importer>
 
 =cut
-
-1;

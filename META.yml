@@ -1,20 +1,27 @@
 ---
-abstract: 'makes something'
+abstract: "our $VERSION = '0.002';"
 author:
-  - 'Wouter Willaert <wouterw@inuits.eu>'
-  - 'Vitali Peil <vitali.peil at uni-bielefeld.de>'
+  - 'Wouter Willaert <wouterw at inuits.eu>'
 build_requires:
   Module::Build: 0.3601
   Test::More: 1.001003
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Dist::Milla version v1.0.5, Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Catmandu-CrossRef
+no_index:
+  directory:
+    - t
+    - xt
+    - inc
+    - share
+    - eg
+    - examples
 requires:
   Catmandu: 0.9204
   Furl: 3.02
@@ -22,7 +29,9 @@ requires:
   XML::LibXML::Simple: 0.94
   perl: v5.10.1
 resources:
-  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Catmandu-CrossRef
-  homepage: https://github.com/vpeil/Catmandu-CrossRef/wiki
-  repository: git://github.com/vpeil/Catmandu-CrossRef.git
-version: 0.001
+  bugtracker: https://github.com/vpeil/Catmandu-CrossRef/issues
+  homepage: https://github.com/vpeil/Catmandu-CrossRef
+  repository: https://github.com/vpeil/Catmandu-CrossRef.git
+version: 0.002
+x_contributors:
+  - 'vpeil <vitali.peil@uni-bielefeld.de>'
