@@ -1,5 +1,5 @@
 ---
-abstract: "our $VERSION = '0.002';"
+abstract: "our $VERSION = '0.003';"
 author:
   - 'Wouter Willaert <wouterw at inuits.eu>'
 build_requires:
@@ -29,9 +29,9 @@ requires:
   XML::LibXML::Simple: 0.94
   perl: v5.10.1
 resources:
-  bugtracker: https://github.com/vpeil/Catmandu-CrossRef/issues
-  homepage: https://github.com/vpeil/Catmandu-CrossRef
-  repository: https://github.com/vpeil/Catmandu-CrossRef.git
-version: 0.002
+  bugtracker: https://github.com/LibreCat/Catmandu-CrossRef/issues
+  homepage: https://github.com/LibreCat/Catmandu-CrossRef
+  repository: https://github.com/LibreCat/Catmandu-CrossRef.git
+version: 0.003
 x_contributors:
   - 'vpeil <vitali.peil@uni-bielefeld.de>'

@@ -151,15 +151,6 @@ Other possible values are xsd_xml, unixsd, info
 
 =back
 
-=begin HTML
-
-<p>
-<img src="https://travis-ci.org/vpeil/Catmandu-CrossRef.svg?branch=master" alt="build status" />
-<img src="https://coveralls.io/repos/vpeil/Catmandu-CrossRef/badge.png?branch=master" alt="coverage status" />
-</p>
-
-=end HTML
-
 =head1 SEE ALSO
 
   L<Catmandu::Importer::DOI> is an older version of this module.

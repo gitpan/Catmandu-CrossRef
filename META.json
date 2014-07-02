@@ -1,5 +1,5 @@
 {
-   "abstract" : "our $VERSION = '0.002';",
+   "abstract" : "our $VERSION = '0.003';",
    "author" : [
       "Wouter Willaert <wouterw at inuits.eu>"
    ],
@@ -57,16 +57,16 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/vpeil/Catmandu-CrossRef/issues"
+         "web" : "https://github.com/LibreCat/Catmandu-CrossRef/issues"
       },
-      "homepage" : "https://github.com/vpeil/Catmandu-CrossRef",
+      "homepage" : "https://github.com/LibreCat/Catmandu-CrossRef",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/vpeil/Catmandu-CrossRef.git",
-         "web" : "https://github.com/vpeil/Catmandu-CrossRef"
+         "url" : "https://github.com/LibreCat/Catmandu-CrossRef.git",
+         "web" : "https://github.com/LibreCat/Catmandu-CrossRef"
       }
    },
-   "version" : "0.002",
+   "version" : "0.003",
    "x_contributors" : [
       "vpeil <vitali.peil@uni-bielefeld.de>"
    ]

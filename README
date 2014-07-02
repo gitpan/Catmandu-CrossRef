@@ -1,6 +1,7 @@
 NAME
             Catmandu::CrossRef - a bundle of Catmandu modules for working with data from CrossRef
 
+STATUS
 MODULES
     *   Catmandu::Importer::CrossRef
 
