@@ -1,5 +1,9 @@
 Revision history for Catmandu-CrossRef
 
+0.004  2014-08-28 14:47:31 CEST
+	- rewrite with Catmandu::XML
+	- badges
+
 0.003  2014-07-02 14:11:52 CEST
 	- tests, pod
 

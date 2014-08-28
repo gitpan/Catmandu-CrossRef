@@ -1,10 +1,11 @@
 ---
-abstract: "our $VERSION = '0.003';"
+abstract: "our $VERSION = '0.004';"
 author:
   - 'Wouter Willaert <wouterw at inuits.eu>'
 build_requires:
   Module::Build: 0.3601
-  Test::More: 1.001003
+  Test::Exception: 0.32
+  Test::More: 0.88
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
@@ -23,15 +24,15 @@ no_index:
     - eg
     - examples
 requires:
-  Catmandu: 0.9204
-  Furl: 3.02
-  Moo: 1.005000
-  XML::LibXML::Simple: 0.94
+  Catmandu: 0
+  Catmandu::XML: 0
+  Furl: 0
+  Moo: 0
   perl: v5.10.1
 resources:
   bugtracker: https://github.com/LibreCat/Catmandu-CrossRef/issues
   homepage: https://github.com/LibreCat/Catmandu-CrossRef
   repository: https://github.com/LibreCat/Catmandu-CrossRef.git
-version: 0.003
+version: 0.004
 x_contributors:
   - 'vpeil <vitali.peil@uni-bielefeld.de>'

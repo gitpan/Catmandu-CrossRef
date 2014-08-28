@@ -13,33 +13,35 @@ my %module_build_args = (
   "configure_requires" => {
     "Module::Build" => "0.3601"
   },
-  "dist_abstract" => "our \$VERSION = '0.003';",
+  "dist_abstract" => "our \$VERSION = '0.004';",
   "dist_author" => [
     "Wouter Willaert <wouterw at inuits.eu>"
   ],
   "dist_name" => "Catmandu-CrossRef",
-  "dist_version" => "0.003",
+  "dist_version" => "0.004",
   "license" => "perl",
   "module_name" => "Catmandu::CrossRef",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
-    "Catmandu" => "0.9204",
-    "Furl" => "3.02",
-    "Moo" => "1.005000",
-    "XML::LibXML::Simple" => "0.94",
+    "Catmandu" => 0,
+    "Catmandu::XML" => 0,
+    "Furl" => 0,
+    "Moo" => 0,
     "perl" => "v5.10.1"
   },
   "script_files" => [],
   "test_requires" => {
-    "Test::More" => "1.001003"
+    "Test::Exception" => "0.32",
+    "Test::More" => "0.88"
   }
 );
 
 
 my %fallback_build_requires = (
   "Module::Build" => "0.3601",
-  "Test::More" => "1.001003"
+  "Test::Exception" => "0.32",
+  "Test::More" => "0.88"
 );
 
 
