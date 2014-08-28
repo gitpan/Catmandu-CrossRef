@@ -13,12 +13,12 @@ my %module_build_args = (
   "configure_requires" => {
     "Module::Build" => "0.3601"
   },
-  "dist_abstract" => "our \$VERSION = '0.004';",
+  "dist_abstract" => "Base class for working with crossref data.",
   "dist_author" => [
-    "Wouter Willaert <wouterw at inuits.eu>"
+    "Vitali Peil"
   ],
   "dist_name" => "Catmandu-CrossRef",
-  "dist_version" => "0.004",
+  "dist_version" => "0.005",
   "license" => "perl",
   "module_name" => "Catmandu::CrossRef",
   "recommends" => {},

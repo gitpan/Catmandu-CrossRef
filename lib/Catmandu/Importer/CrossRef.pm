@@ -7,114 +7,100 @@ package Catmandu::Importer::CrossRef;
 =cut
 
 use Catmandu::Sane;
+use Catmandu::Importer::XML;
 use Furl;
-use XML::LibXML::Simple qw(XMLin);
 use Moo;
 
 with 'Catmandu::Importer';
 
 use constant BASE_URL => 'http://doi.crossref.org/search/doi';
 
-has base => (is => 'ro', default => sub { return BASE_URL; });
-has doi => (is => 'ro', required => 1);
-has usr => (is => 'ro', required => 1); 
-has pwd => (is => 'ro', required => 0);
-has fmt => (is => 'ro', default => sub { 'unixref' }); 
+has base => ( is => 'ro', default => sub { return BASE_URL; } );
+has doi => ( is => 'ro', required => 1 );
+has usr => ( is => 'ro', required => 1 );
+has pwd => ( is => 'ro', required => 0 );
+has fmt => ( is => 'ro', default  => sub {'unixref'} );
 
-has _api_key => (is => 'lazy', builder => '_get_api_key');
-has _current_result => (is => 'ro');
+has _api_key => (
+    is      => 'lazy',
+    builder => sub {
+        my ($self) = @_;
+
+        my $key = $self->usr;
+        $key .= ':' . $self->pwd if $self->pwd;
+        return $key;
+    }
+);
 
 sub _request {
-  my ($self, $url) = @_;
+    my ( $self, $url ) = @_;
 
-  my $furl = Furl->new(
-    agent => 'Mozilla/5.0',
-    timeout => 10,
-  );
-  my $res = $furl->get($url);
-  die $res->status_line unless $res->is_success;
+    my $ua = Furl->new( timeout => 20 );
 
-  return $res->content;
+    my $res;
+    try {
+        $res = $ua->get($url);
+        die $res->status_line unless $res->is_success;
+
+        return $res->content;
+    }
+    catch {
+        Catmandu::Error->throw("Status code: $res->status_line");
+    };
+
 }
 
 sub _hashify {
-  my ($self, $in) = @_;
+    my ( $self, $in ) = @_;
 
-  my $xs = XML::LibXML::Simple->new();
-  my $out = $xs->XMLin($in);
-
-  return $out;
-}
-
-sub _get_api_key {
-	my ($self) = @_;
-	
-	my $key = $self->usr;
-  $key .= ':'.$self->pwd if $self->pwd;
-  return $key;
+    my $xml = Catmandu::Importer::XML->new( file => \$in );
+    return $xml->to_array;
 }
 
 sub _api_call {
-  my ($self) = @_;
+    my ($self) = @_;
 
-  my $url = $self->base;
-  $url .= '?pid='.$self->_api_key;
-  $url .= '&doi='.$self->doi;
-  $url .= '&format='.$self->fmt;
+    my $url = $self->base;
+    $url .= '?pid=' . $self->_api_key;
+    $url .= '&doi=' . $self->doi;
+    $url .= '&format=' . $self->fmt;
 
-  my $res = $self->_request($url);
+    my $res = $self->_request($url);
 
-  return $res;
+    return $res;
 }
 
 sub _get_record {
-  my ($self) = @_;
+    my ($self) = @_;
 
-  unless ($self->_current_result) {
-	  my $xml = $self->_api_call;
-	  my $hash = $self->_hashify($xml);
+    my $xml = $self->_api_call;
 
-	  $self->{_current_result} = $hash->{doi_record}->{crossref};
-  };
-
-  return $self->_current_result;
+    return $self->_hashify($xml);
 }
-
-sub to_array {
-  return [ $_[0]->_get_record ];
-}
-
-sub first {
-  return [ $_[0]->_get_record ];
-}
-
-*last = \&first;
 
 sub generator {
-  my ($self) = @_;
-  my $return = 1;
+    my ($self) = @_;
 
-  return sub {
-	  # hack to make iterator stop.
-	  if ($return) {
-		  $return = 0;
-		  return $self->_get_record;
-	  }
-	  return undef;
-  };
+    return sub {
+        state $stack = $self->_get_record;
+        my $rec = pop @$stack;
+        $rec->{doi_record}->{crossref}
+            ? return $rec->{doi_record}->{crossref}
+            : return undef;
+    };
 }
 
 1;
 
 =head1 SYNOPSIS
 
-  use Catmandu::Importer::DOI;
+  use Catmandu::Importer::CrossRef;
 
   my %attrs = (
     doi => '<doi>',
     usr => '<your-crossref-username>',
-	  pwd => '<your-crossref-password>',
-	  fmt => '<xsd_xml | unixref | unixsd | info>'
+    pwd => '<your-crossref-password>',
+    fmt => '<xsd_xml | unixref | unixsd | info>'
   );
 
   my $importer = Catmandu::Importer::DOI->new(%attrs);

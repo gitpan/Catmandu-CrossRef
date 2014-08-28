@@ -1,11 +1,16 @@
 NAME
-            Catmandu::CrossRef - a bundle of Catmandu modules for working with data from CrossRef
+        Catmandu::CrossRef - Catmandu modules for working with crossref data
 
 STATUS
 MODULES
     *   Catmandu::Importer::CrossRef
 
 AUTHOR
-            Wouter Willaert <wouterw at inuits.eu>
-            Vitali Peil <vitali.peil at uni-bielefeld.de>
+    Vitali Peil
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by Vitali Peil.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
