@@ -1,18 +1,17 @@
 package Catmandu::CrossRef;
+use strict;
+use warnings;
 
-# ABSTRACT: Base class for working with crossref data.
-
-our $VERSION = '0.005';
+our $VERSION = '0.006';
 
 1;
-
 __END__
 
 =encoding utf-8
 
 =head1 NAME
 
-    Catmandu::CrossRef - Catmandu modules for working with crossref data
+Catmandu::CrossRef - Catmandu modules for working with crossref data
 
 =head1 STATUS
 
@@ -30,7 +29,7 @@ __END__
 
 =over
 
-=item *
+=item
 
 L<Catmandu::Importer::CrossRef>
 
@@ -38,11 +37,17 @@ L<Catmandu::Importer::CrossRef>
 
 =head1 AUTHOR
 
-Vitali Peil
+Vitali Peil C<< <vitali.peil at uni-bielefeld.de> >>
 
-=head1 COPYRIGHT AND LICENSE
+=head1 CONTRIBUTORS
+
+Jakob Voss C<< <voss at gbv.de> >>
+
+=head1 COPYRIGHT
 
 This software is copyright (c) 2014 by Vitali Peil.
+
+=head1 LICENSE
 
 This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
 

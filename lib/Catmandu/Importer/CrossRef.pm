@@ -1,11 +1,5 @@
 package Catmandu::Importer::CrossRef;
 
-=head1 NAME
-
-  Catmandu::Importer::CrossRef - Package that imports data form CrossRef
-
-=cut
-
 use Catmandu::Sane;
 use Catmandu::Importer::XML;
 use Furl;
@@ -91,6 +85,11 @@ sub generator {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+Catmandu::Importer::CrossRef - Package that imports data form CrossRef API
 
 =head1 SYNOPSIS
 
@@ -103,7 +102,7 @@ sub generator {
     fmt => '<xsd_xml | unixref | unixsd | info>'
   );
 
-  my $importer = Catmandu::Importer::DOI->new(%attrs);
+  my $importer = Catmandu::Importer::CrossRef->new(%attrs);
 
   my $n = $importer->each(sub {
     my $hashref = $_[0];
@@ -112,7 +111,7 @@ sub generator {
 
 =head1 DESCRIPTION
 
-  This L<Catmandu::Importer::CrossRef> imports data from the CrossRef API given a DOI.
+This L<Catmandu::Importer> imports data from the CrossRef API given a DOI.
 
 =head1 CONFIGURATION
 
@@ -120,7 +119,7 @@ sub generator {
 
 =item base
 
-Base url of the API. Default is to http://doi.crossref.org/search/doi.
+Base url of the API. Default is to L<http://doi.crossref.org/search/doi>.
 
 =item doi
 
@@ -132,14 +131,21 @@ Required. Your CrossRef username. Register first!
 
 =item fmt
 
-Optional. The output format. Default is to unixref.
-Other possible values are xsd_xml, unixsd, info
+The optional output format. Default is L<unixref|http://help.crossref.org/unixref-query-result-format>.
+Other possible values are L<unixsd|http://help.crossref.org/unixsd>, and
+L<xsd_xml|http://help.crossref.org/deprecated_q> (deprecated).
 
 =back
 
 =head1 SEE ALSO
 
-  L<Catmandu::Importer::DOI> is an older version of this module.
-  L<Catmandu::Iterable>, L<Catmandu::Importer>
+L<Catmandu::Importer::DOI> is an older version of this module.
+
+CrossRef also provides DOI data in RDF, which can be imported with L<Catmandu::RDF>:
+
+    use Catmandu::Importer::RDF;
+    my $doi = "10.2474/trol.7.147";
+    my $url = "http://dx.doi.org/$doi"; 
+    my $rdf = Catmandu::Importer::RDF->new( url => $url )->first;
 
 =cut

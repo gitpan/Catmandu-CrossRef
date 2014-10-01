@@ -1,7 +1,7 @@
 {
-   "abstract" : "Base class for working with crossref data.",
+   "abstract" : "Catmandu modules for working with crossref data",
    "author" : [
-      "Vitali Peil"
+      "Vitali Peil C<< <vitali.peil at uni-bielefeld.de> >>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Dist::Milla version v1.0.5, Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.131560",
@@ -67,7 +67,7 @@
          "web" : "https://github.com/LibreCat/Catmandu-CrossRef"
       }
    },
-   "version" : "0.005",
+   "version" : "0.006",
    "x_contributors" : [
       "vpeil <vitali.peil@uni-bielefeld.de>"
    ]

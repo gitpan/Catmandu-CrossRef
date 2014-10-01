@@ -1,7 +1,7 @@
 ---
-abstract: 'Base class for working with crossref data.'
+abstract: 'Catmandu modules for working with crossref data'
 author:
-  - 'Vitali Peil'
+  - 'Vitali Peil C<< <vitali.peil at uni-bielefeld.de> >>'
 build_requires:
   Module::Build: 0.3601
   Test::Exception: 0.32
@@ -33,6 +33,6 @@ resources:
   bugtracker: https://github.com/LibreCat/Catmandu-CrossRef/issues
   homepage: https://github.com/LibreCat/Catmandu-CrossRef
   repository: https://github.com/LibreCat/Catmandu-CrossRef.git
-version: 0.005
+version: 0.006
 x_contributors:
   - 'vpeil <vitali.peil@uni-bielefeld.de>'
